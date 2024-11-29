@@ -10,4 +10,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        root: "./root.html",
+      },
+    },
+  },
+  server: {
+    open: './root.html',
+  },
 })

@@ -1,11 +1,9 @@
 import './App.css'
-import { InteractiveWorkCalendar } from './components/interactive-work-calendar'
+import { WorkCalendar } from './components/work-calendar'
 
 function App() {
   return (
-    <>
-      <InteractiveWorkCalendar />
-    </>
+    <WorkCalendar />
   )
 }
 
