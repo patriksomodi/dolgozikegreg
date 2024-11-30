@@ -1,4 +1,3 @@
-import './App.css'
 import { WorkCalendar } from './components/work-calendar'
 
 function App() {

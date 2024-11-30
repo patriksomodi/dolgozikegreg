@@ -46,67 +46,71 @@ export function WorkCalendar() {
   const daysOfWeek = ["H", "K", "Sze", "Cs", "P", "Szo", "V"];
 
   return (
-    <Card className="w-full text-xl overflow">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0">
-        <CardTitle>Dolgozik-e Greg</CardTitle>
-        <div className="flex items-center space-x-2">
-          <span className="font-bold">
-            {currentDate.toLocaleString("hu-HU", { month: "long", year: "numeric" })}
-          </span>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-7 gap-2 w-max">
-          {daysOfWeek.map(day => (
-            <div key={day} className="text-center font-bold">{day}</div>
-          ))}
-          {calendar.map((day, index) => {
-            const isToday = day.date.toDateString() === new Date().toDateString();
-            if (day.works === null) { return <div />; }
-            if (day.works !== null)
-              return (
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                <div key={index} className={`flex flex-col w-full p-2 ${isToday ? "border-slate-600 border-4 rounded-xl" : "border-gray-300 border-2 rounded-xl"}`}>
-                  <span className={isToday ? "font-extrabold text-slate-600" : "font-bold"}>
-                    {day.date.getDate()}
-                  </span>
-                  {day.works && (<Badge
-                    variant={"secondary"}
-                    className={"justify-center bg-green-600 break-all text-white font-bold h-full"}
-                  >
-                    Szabadnap
-                  </Badge>)}
-                  {!day.works && (day.type === oddType) && (
-                    <Badge
-                      variant={"secondary"}
-                      className={"justify-center bg-gray-300 break-all text-black font-bold flex-col"}
-                    >
-                      <div>Éjszakás</div>
-                      <div>19:00 - 07:00</div>
-                    </Badge>
-                  )}
-                  {!day.works && (day.type === evenType) && (
-                    <Badge
-                      variant={"secondary"}
-                      className={"justify-center bg-gray-300 break-all text-black font-bold flex-col"}
-                    >
-                      <div>Nappalos</div>
-                      <div>07:00 - 19:00</div>
-                    </Badge>
-                  )}
-                  {!day.type && (
-                    <Badge
-                      variant={"secondary"}
-                      className={"justify-center bg-gray-300 break-all text-black font-bold flex-col"}
-                    >
-                      <div>N/A</div>
-                    </Badge>
-                  )}
-                </div>
-              );
-          })}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col h-full justify-center w-full">
+      <div className="flex h-full justify-center w-full">
+        <Card className="text-xl overflow text-center w-full h-full">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0">
+            <CardTitle>Dolgozik-e Greg</CardTitle>
+            <div className="flex items-center space-x-2">
+              <span className="font-bold">
+                {currentDate.toLocaleString("hu-HU", { month: "long", year: "numeric" })}
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-7 gap-2 w-full h-full">
+              {daysOfWeek.map(day => (
+                <div key={day} className="text-center font-bold">{day}</div>
+              ))}
+              {calendar.map((day, index) => {
+                const isToday = day.date.toDateString() === new Date().toDateString();
+                if (day.works === null) { return <div />; }
+                if (day.works !== null)
+                  return (
+                    // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                    <div key={index} className={`flex flex-col p-2 ${isToday ? "border-slate-600 border-4 rounded-xl" : "border-gray-300 border-2 rounded-xl"}`}>
+                      <span className={isToday ? "font-extrabold text-slate-600" : "font-bold"}>
+                        {day.date.getDate()}
+                      </span>
+                      {day.works && (
+                        <Badge
+                          variant={"secondary"}
+                          className={"justify-center bg-green-600 break-word text-white font-bold flex-col h-full"}
+                        >
+                          <div>Sz</div>
+                        </Badge>
+                      )}
+                      {!day.works && (day.type === oddType) && (
+                        <Badge
+                          variant={"secondary"}
+                          className={"justify-center bg-gray-300 break-word text-black font-bold flex-col h-full"}
+                        >
+                          <div>É</div>
+                        </Badge>
+                      )}
+                      {!day.works && (day.type === evenType) && (
+                        <Badge
+                          variant={"secondary"}
+                          className={"justify-center bg-gray-300 break-word text-black font-bold flex-col h-full"}
+                        >
+                          <div>N</div>
+                        </Badge>
+                      )}
+                      {!day.type && (
+                        <Badge
+                          variant={"secondary"}
+                          className={"justify-center bg-gray-300 break-word text-black font-bold flex-col h-full"}
+                        >
+                          <div>N/A</div>
+                        </Badge>
+                      )}
+                    </div>
+                  );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   )
 }
